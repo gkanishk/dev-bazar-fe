@@ -2,8 +2,9 @@
 @import 'tailwindcss/tailwind.css';
 @import 'antd/dist/antd.css';
 
-body {
+body, html {
     font-family: 'Montserrat', sans-serif;
+    height: 100%;
 }
 
 .nav-bar {
@@ -18,4 +19,8 @@ body {
 * {
     margin: 0;
     padding: 0;
+}
+
+#__next{
+    height: 100%;
 }

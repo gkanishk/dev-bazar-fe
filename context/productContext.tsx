@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, ReactNode, useState, useEffect } from "react";
+import useAxios from "../hooks/useAxios";
 
 type ProductsContextType = {
     products: Array<any>,
@@ -29,14 +30,11 @@ export function ProductsProvider({ children }: Props) {
     const [products, setProducts] = useState([]);
     const [filteredProducts,setFilteredProducts]=useState([]);
     const [productLoading,setProductLoading] = useState(false);
+    const {response,isLoading} = useAxios("GET","/products",{},{});
     useEffect(()=>{
-        (async ()=>{
-            setProductLoading(true);
-            const {data} = await axios.get("/products");
-            setProducts(data?.response??[]);
-            setProductLoading(false);
-        })()
-    },[])
+        setProducts(response?.data?.response??[]);
+        setProductLoading(isLoading);
+    },[response,isLoading])
 
     useEffect(()=>{
         setFilteredProducts(products);

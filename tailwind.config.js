@@ -11,8 +11,15 @@ module.exports = {
       'full': '100%',
       "8": "8rem",
       "10": '10rem',
+      "screen":'100vh',
+      '100': '26rem'
      },
-    extend: {},
+    extend: {
+      height: {
+        '100':'26rem',
+        '80vh':'80vh'
+      }
+    },
   },
   variants: {
     extend: {},
