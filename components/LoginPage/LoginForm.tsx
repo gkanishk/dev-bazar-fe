@@ -32,6 +32,8 @@ function LoginForm({redirectPage,changePage}) {
             notification.error({
                 message: "Login Failed!"
             })
+            setIsGuestLoginLoading(false);
+            setIsLoginLoading(false);
         }
     }
 

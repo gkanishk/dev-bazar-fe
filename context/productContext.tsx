@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createContext, useContext, ReactNode, useState, useEffect } from "react";
 import useAxios from "../hooks/useAxios";
 

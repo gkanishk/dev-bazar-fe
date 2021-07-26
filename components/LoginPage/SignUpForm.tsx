@@ -15,7 +15,7 @@ export default function SignUpForm({redirectPage,changePage}) {
             localStorage.setItem("accessToken",response.data.response.accessToken)
             setAccessToken(response.data.response.accessToken);
             notification.success({
-                message: "SignUp Successful",
+                message: "SignUp Successful!",
                 duration: 2
             });
             redirectPage();
@@ -29,6 +29,7 @@ export default function SignUpForm({redirectPage,changePage}) {
             notification.error({
                 message: "SignUp Failed!"
             })
+            setIsSignUpLoading(false);
         }
     }
     return (

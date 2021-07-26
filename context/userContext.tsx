@@ -8,7 +8,8 @@ type UserContextType = {
     setWishList:Function,
     cart: Array<any>
     setCart: Function,
-    setAccessToken: Function
+    setAccessToken: Function,
+    logoutUser:Function
 };
 
 const UserContextDefaultValues: UserContextType = {
@@ -19,7 +20,8 @@ const UserContextDefaultValues: UserContextType = {
     setWishList:()=>{},
     cart: [],
     setCart:()=>{},
-    setAccessToken:()=>{}
+    setAccessToken:()=>{},
+    logoutUser:()=>{}
 };
 
 const UserContext = createContext<UserContextType>(UserContextDefaultValues);
@@ -38,6 +40,14 @@ export function UserProvider({ children }: Props) {
     const [cart,setCart] = useState([]);
     const [accessToken,setAccessToken] = useState("");
 
+    const logoutUser=()=>{
+        setAccessToken("");
+        setLoginned(false);
+        setWishList([]);
+        setCart([]);
+        localStorage.clear();
+    }
+
     useEffect(()=>{
         const accessToken=localStorage.getItem("accessToken");
         if(accessToken){
@@ -54,7 +64,8 @@ export function UserProvider({ children }: Props) {
         accessToken,
         setAccessToken,
         cart,
-        setCart
+        setCart,
+        logoutUser
     };
 
     return (

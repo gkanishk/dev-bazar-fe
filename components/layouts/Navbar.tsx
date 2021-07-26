@@ -1,20 +1,34 @@
-import { Input, Button, Menu, Dropdown, Tooltip } from 'antd';
+import { Input, Button, Menu, Dropdown, Tooltip, notification } from 'antd';
 import { UserOutlined, ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import React from 'react';
+import { useUser } from '../../context/userContext';
 const { Search } = Input;
 
 export default function Navbar() {
+    const {isLoginned,logoutUser}=useUser();
     const router=useRouter();
+    const logout=()=>{
+        router.push("/");
+        logoutUser();
+        notification.success({
+            message: "Logged Out!"
+        })
+    }
     const menu = (
         <Menu>
             <div className="flex flex-col items-start p-3 justify-items-start">
-                <strong>Welcome!</strong>
-                <span className="mb-2">In order to access you need to login.</span>
-                <Link href="/login">
-                <Button>Login/Signup</Button>
-                </Link>
+                <strong>Welcome {isLoginned&&"User"}!</strong>
+                {
+                    !isLoginned&&
+                    <>
+                    <span className="mb-2">In order to access you need to login.</span>
+                    <Link href="/login">
+                    <Button>Login/Signup</Button>
+                    </Link>
+                    </>
+                }
             </div>
             <Menu.Item key="wishlist-item-dropdown">
             <Link href="/wishlist">
@@ -26,6 +40,12 @@ export default function Navbar() {
                 Cart
             </Link>
             </Menu.Item>
+            {
+                isLoginned&&
+                <Menu.Item key="cart-item-dropdown" onClick={logout}>
+                Logout
+                </Menu.Item>
+            }
         </Menu>
     )
 

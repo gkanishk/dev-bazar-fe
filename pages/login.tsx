@@ -10,5 +10,5 @@ export default function Login() {
             router.push("/")
         }
     },[])
-    return (<>{!isLoginned&&<LoginPage />}</>)
+    return (<LoginPage/>)
 }
