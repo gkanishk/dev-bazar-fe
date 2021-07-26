@@ -4,20 +4,22 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useProducts } from "../../context/productContext";
 import { useUser } from "../../context/userContext";
+import useAxios,{getAxiosClient} from "../../hooks/useAxios";
 import Filters from "./Filters";
 
 export default function ProductPage() {
     const { filteredProducts, productLoading } = useProducts();
-    const {isLoginned} = useUser();
+    const {isLoginned, accessToken} = useUser();
     const router=useRouter()
     const getDiscounterPrice = (price, disc) => {
         return Math.round(price - ((disc / 100) * price));
     }
 
-    const addToCartWishList=(productId,type:string)=>{
+    const addToCartWishList=async(productId,type:string)=>{
         if(!isLoginned)
         return router.push(`/login?referer=products&productId=${productId}&action=${type}`)
-        console.log(productId);
+        const response = await getAxiosClient(accessToken).post(`/user/${type}`,{productId})
+        console.log(response);
     }
     return <>
         {productLoading ? <div className="grid w-full h-screen place-content-center">

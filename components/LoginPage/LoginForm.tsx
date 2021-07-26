@@ -1,7 +1,7 @@
 import { Button, Form, Input, notification } from "antd";
-import axios from "axios";
 import React,{useState} from "react";
 import { useUser } from "../../context/userContext";
+import { getAxiosClient } from "../../hooks/useAxios";
 
 function LoginForm({redirectPage,changePage}) {
     const [form] = Form.useForm();
@@ -64,8 +64,7 @@ function LoginForm({redirectPage,changePage}) {
 }
 
 async function LoginUser(userDetails:{email:string,password:string}){
-    const url='https://devbazar.herokuapp.com';    
-    return await axios.post(url+"/user/login",userDetails);
+    return await getAxiosClient("").post("/user/login",userDetails);
 }
 
 export default LoginForm;

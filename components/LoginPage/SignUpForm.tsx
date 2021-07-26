@@ -2,6 +2,7 @@ import { Button, Form, Input, notification } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
 import { useUser } from "../../context/userContext";
+import { getAxiosClient } from "../../hooks/useAxios";
 
 export default function SignUpForm({redirectPage,changePage}) {
     const [form] = Form.useForm();
@@ -56,7 +57,6 @@ export default function SignUpForm({redirectPage,changePage}) {
     )
 }
 
-async function SignUpUser(userDetails:{name:string,email:string,password:string}){
-    const url='https://devbazar.herokuapp.com';    
-    return await axios.post(url+"/user/signup",userDetails);
+async function SignUpUser(userDetails:{name:string,email:string,password:string}){ 
+    return await getAxiosClient("").post("/user/signup",userDetails);
 }
