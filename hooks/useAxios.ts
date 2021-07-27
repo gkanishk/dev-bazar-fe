@@ -1,30 +1,21 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { useUser } from "../context/userContext";
 
 let axiosClient:AxiosInstance=null;
-const authInterceptor = (accessToken) => {
-    return (config: AxiosRequestConfig) => {
-      config.headers[
-        "Authorization"
-      ] = `Bearer ${accessToken}`;
-      return config;
-    };
-  };
-axiosClient = axios.create({
+
+const getAxiosClient=(accessToken)=>{
+  axiosClient = axios.create({
     baseURL: 'https://devbazar.herokuapp.com',
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`
     }
 });
-
-const getAxiosClient=(accessToken)=>{
-  axiosClient.interceptors.request.use(authInterceptor(accessToken));
   return axiosClient;
 }
 
 export {getAxiosClient}
-export const baseUrl ='https://devbazar.herokuapp.com';
 
 const useAxios=(method: 'GET' | 'POST' | 'DELETE' | 'PUT',url:string,body:Record<string,any>,params:Record<string,any>)=>{
     const [response,setResponse]=useState<AxiosResponse>(null);
