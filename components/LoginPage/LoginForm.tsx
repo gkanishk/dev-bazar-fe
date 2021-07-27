@@ -2,6 +2,7 @@ import { Button, Form, Input, notification } from "antd";
 import React,{useState} from "react";
 import { useUser } from "../../context/userContext";
 import { getAxiosClient } from "../../hooks/useAxios";
+import { set_cookie } from "../../hooks/useCookie";
 
 function LoginForm({redirectPage,changePage}) {
     const [form] = Form.useForm();
@@ -15,6 +16,7 @@ function LoginForm({redirectPage,changePage}) {
             if(response.data?.statusCode===200){
             setLoginned(true);
             localStorage.setItem("accessToken",response.data.response.accessToken)
+            set_cookie("accessToken",response.data.response.accessToken)
             setAccessToken(response.data.response.accessToken);
             notification.success({
                 message: "Login Successful",

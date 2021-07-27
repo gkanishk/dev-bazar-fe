@@ -4,6 +4,7 @@ import { ProductsProvider } from "../context/productContext";
 import { UserProvider } from "../context/userContext";
 
 function MyApp({ Component, pageProps }) {
+
   return (
     <>
       <UserProvider>

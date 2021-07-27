@@ -24,6 +24,7 @@ const getAxiosClient=(accessToken)=>{
 }
 
 export {getAxiosClient}
+export const baseUrl ='https://devbazar.herokuapp.com';
 
 const useAxios=(method: 'GET' | 'POST' | 'DELETE' | 'PUT',url:string,body:Record<string,any>,params:Record<string,any>)=>{
     const [response,setResponse]=useState<AxiosResponse>(null);
