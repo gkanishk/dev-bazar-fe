@@ -39,10 +39,18 @@ export const useProductItems=()=>{
                 })
             }
         } catch (error){
-            notification.error({
-                message: "Operation failed",
-                duration: 2
-            })
+            console.log(error.response)
+            if(error.response?.data?.statusCode===422){
+                notification.info({
+                    message: error.response?.data?.message??"Operation failed",
+                    duration: 2
+                })
+            }else {
+                notification.error({
+                    message: error.response?.data?.message??"Operation failed",
+                    duration: 2
+                })
+            }
         }
     }
 
@@ -57,8 +65,8 @@ export const useProductItems=()=>{
 
     const removeFromWishList=async(productId,showNotification=false)=>{
         const wishListItems = wishList.filter(({item})=>item.id!==productId);
-        setWishList([...wishListItems]);
         await getAxiosClient(accessToken).post("/user/updateWishList",getwishListBody(productId));
+        setWishList([...wishListItems]);
         if(showNotification) {
             notification.success({
                 message: "Removes from Wishlist",
