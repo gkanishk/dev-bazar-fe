@@ -1,11 +1,12 @@
 import {useUser} from "../../context/userContext";
 import EmptyLoginScreen from "../common/EmptyLoginScreen";
+import UserWishList from "./UserWishList";
 
 function WishListPage(){
     const {isLoginned }= useUser();
     return (
         <div className="h-full p-2">{
-            isLoginned?"Wishlist":<EmptyLoginScreen pageName="wishlist" img="/login.svg" />
+            isLoginned?<UserWishList/>:<EmptyLoginScreen pageName="wishlist" img="/login.svg" />
         }</div>
     )
 }

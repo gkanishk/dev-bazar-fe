@@ -75,14 +75,14 @@ export default function Navbar() {
                     <Button shape="circle" icon={<UserOutlined />} />
                     </Dropdown>
                 }
-                <Link href="/cart">
-                <Tooltip placement="bottom" title={"Cart"}>
-                    <Button shape="circle" icon={<ShoppingCartOutlined />} />
-                </Tooltip>
-                </Link>
                 <Link href="/wishlist">
                 <Tooltip placement="bottom" title={"WishList"}>               
                     <Button shape="circle" icon={<HeartOutlined />} />
+                </Tooltip>
+                </Link>
+                <Link href="/cart">
+                <Tooltip placement="bottom" title={"Cart"}>
+                    <Button shape="circle" icon={<ShoppingCartOutlined />} />
                 </Tooltip>
                 </Link>
             </div>

@@ -1,6 +1,5 @@
-import axios from "axios";
 import { createContext, useContext, ReactNode, useState, useEffect } from "react";
-import { baseUrl } from "../hooks/useAxios";
+import { getAxiosClient } from "../hooks/useAxios";
 import { delete_cookie, getCookie } from "../hooks/useCookie";
 
 type UserContextType = {
@@ -54,17 +53,20 @@ export function UserProvider({ children }: Props) {
 
     useEffect(()=>{
         const token = getCookie("accessToken");
-        setAccessToken(token)
+        if(token){
+            setAccessToken(token);
+            setLoginned(true);
+        }
     },[]);
 
     useEffect(()=>{
             (async()=>{
                 if(accessToken.length>0){
-                const cartResponse = await axios.get(baseUrl+"/user/cart",{headers:{Authorization: `Bearer ${accessToken}`}});
-                const wishListResponse = await axios.get(baseUrl+"/user/wishList",{headers:{Authorization: `Bearer ${accessToken}`}});
+                const cartResponse = await getAxiosClient(accessToken).get("/user/cart");
+                const wishListResponse = await getAxiosClient(accessToken).get("/user/wishList");
                 console.log(cartResponse,wishListResponse)
                 setCart(cartResponse.data?.response?.cart?.cartItems??[])
-                setWishList(cartResponse.data?.response?.wishList?.wishListems??[])
+                setWishList(wishListResponse.data?.response?.wishList?.wishListems??[])
             }
             })()
     },[accessToken])

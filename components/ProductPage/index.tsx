@@ -1,26 +1,16 @@
-import { HeartOutlined } from "@ant-design/icons";
+import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Button, Card, Spin, Tooltip } from "antd";
-import { useRouter } from "next/router";
 import React from "react";
+import Link from "next/link";
 import { useProducts } from "../../context/productContext";
-import { useUser } from "../../context/userContext";
-import useAxios,{getAxiosClient} from "../../hooks/useAxios";
+import { useProductItems } from "../../hooks/useProductItems";
 import Filters from "./Filters";
 
 export default function ProductPage() {
     const { filteredProducts, productLoading } = useProducts();
-    const {isLoginned, accessToken} = useUser();
-    const router=useRouter()
-    const getDiscounterPrice = (price, disc) => {
-        return Math.round(price - ((disc / 100) * price));
-    }
+    const { isItemInCart, isItemInWishList, getDiscounterPrice, addToCartWishList } = useProductItems();
 
-    const addToCartWishList=async(productId,type:string)=>{
-        if(!isLoginned)
-        return router.push(`/login?referer=products&productId=${productId}&action=${type}`)
-        const response = await getAxiosClient(accessToken).post(`/user/${type}`,{productId})
-        console.log(response);
-    }
+    
     return <>
         {productLoading ? <div className="grid w-full h-screen place-content-center">
             <Spin className="self-center" size="large" />
@@ -30,7 +20,7 @@ export default function ProductPage() {
                     <Filters />
                 </div>
                 <div className="flex flex-wrap items-start justify-start w-full h-full col-span-3">
-                    {!productLoading &&filteredProducts.length>0? filteredProducts.map(({id, name, price, discount, quantity, attributes: { img, brand } }) => {
+                    {!productLoading && filteredProducts.length > 0 ? filteredProducts.map(({ id, name, price, discount, quantity, attributes: { img, brand } }) => {
                         return <Card
                             hoverable
                             style={{ width: 230, height: 475, cursor: "default", margin: "1rem" }}
@@ -38,8 +28,12 @@ export default function ProductPage() {
                             key={id}
                         >
                             <div className="flex flex-col p-2">
-                                <strong className="flex items-center justify-between">{name} <Tooltip placement="bottom" title={"Add to WishList"}>
-                                    <Button shape="circle" icon={<HeartOutlined />} onClick={()=>addToCartWishList(id,"addToWishList")} />
+                                <strong className="flex items-center justify-between">{name} <Tooltip placement="bottom" title={isItemInWishList(id) ? "Wishlisted" : "Add to WishList"}>
+                                    {!isItemInWishList(id) ? 
+                                    <Button shape="circle" icon={<HeartOutlined />} onClick={() => addToCartWishList(id, "addToWishList")} /> 
+                                    :
+                                    <Button shape="circle" icon={<HeartFilled />} />
+                                    }
                                 </Tooltip></strong>
                                 <span>{brand}</span>
                                 <p>
@@ -48,15 +42,22 @@ export default function ProductPage() {
                                     <span className="text-xs font-light text-yellow-500">{`(${discount}% OFF)`}</span>
                                 </p>
 
-                                <Button disabled={quantity === 0} onClick={()=>addToCartWishList(id,"addToCart")}>Add to Cart</Button>
+                                {!isItemInCart(id)
+                                    ?
+                                    <Button disabled={quantity === 0} onClick={() => addToCartWishList(id, "addToCart")}>Add to Cart</Button>
+                                    :
+                                    <Link href="/cart">
+                                        <Button>Go to Cart</Button>
+                                    </Link>
+                                }
 
                                 <div className="grid grid-cols-2 py-2 place-content-between">
-                                    <span className="text-xs font-normal text-red-500">{(quantity < 3 && quantity >0) && "Only Few left!"}</span>
+                                    <span className="text-xs font-normal text-red-500">{(quantity < 3 && quantity > 0) && "Only Few left!"}</span>
                                     <span>{quantity === 0 && <span className="px-2 text-sm bg-pink-400 rounded text-yellow-50">Out of stock</span>}</span>
                                 </div>
                             </div>
                         </Card>
-                    }):"No Products"}
+                    }) : "No Products"}
                 </div>
             </div>}
     </>
