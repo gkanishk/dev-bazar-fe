@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useUser } from "../../context/userContext";
 import { getAxiosClient } from "../../hooks/useAxios";
+import { set_cookie } from "../../hooks/useCookie";
 
 export default function SignUpForm({redirectPage,changePage}) {
     const [form] = Form.useForm();
@@ -13,7 +14,8 @@ export default function SignUpForm({redirectPage,changePage}) {
             const response=await SignUpUser(value);
             if(response.data?.statusCode===200){
             setLoginned(true);
-            localStorage.setItem("accessToken",response.data.response.accessToken)
+            localStorage.setItem("accessToken",response.data.response.accessToken);
+            set_cookie("accessToken",response.data.response.accessToken);
             setAccessToken(response.data.response.accessToken);
             notification.success({
                 message: "SignUp Successful!",
