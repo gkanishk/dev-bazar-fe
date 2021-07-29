@@ -5,14 +5,16 @@ type ProductsContextType = {
     products: Array<any>,
     filteredProducts: Array<any>,
     productLoading: boolean,
-    filterProducts: Function
+    filterProducts: Function,
+    setFilteredProducts: Function
 };
 
 const ProductsContextDefaultValues: ProductsContextType = {
     products:[],
     filteredProducts:[],
     productLoading: false,
-    filterProducts: ()=>{}
+    filterProducts: ()=>{},
+    setFilteredProducts: ()=>{}
 };
 
 const ProductsContext = createContext<ProductsContextType>(ProductsContextDefaultValues);
@@ -39,7 +41,7 @@ export function ProductsProvider({ children }: Props) {
         setFilteredProducts(products);
     },[products])
 
-    const filterProducts=(sortBy:string,brandFilters:Array<string>,idealFor:Array<string>,sizes:Array<string>,discounts:Array<number>,inStock:boolean)=>{
+    const filterProducts=(sortBy:string,brandFilters:Array<string>,idealFor:Array<string>,sizes:Array<string>,discounts:Array<number>,inStock:boolean, search:string)=>{
         let tempProducts=[...products];
         if(!inStock){
             tempProducts=tempProducts.filter(({quantity})=>(quantity>0))
@@ -56,6 +58,9 @@ export function ProductsProvider({ children }: Props) {
         tempProducts=tempProducts.sort((a, b) => a.price - b.price);
         else if(sortBy==="high")
         tempProducts=tempProducts.sort((a, b) => b.price - a.price);
+        if(search.length>0) {
+        tempProducts = tempProducts.filter((value)=>value.name.toLowerCase().includes(search.toLowerCase().trim()));
+        }
         setFilteredProducts(tempProducts);
     }
 
@@ -63,7 +68,8 @@ export function ProductsProvider({ children }: Props) {
         products,
         filteredProducts,
         productLoading,
-        filterProducts: filterProducts
+        filterProducts: filterProducts,
+        setFilteredProducts
     };
 
     return (

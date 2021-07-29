@@ -1,4 +1,4 @@
-import { Divider, Checkbox, Radio} from "antd"
+import { Divider, Checkbox, Radio, Input} from "antd"
 import { useEffect, useState } from "react"
 import {filters} from "../../../assets/filters";
 import { useProducts } from "../../../context/productContext";
@@ -11,10 +11,11 @@ export default function Filters() {
     const [sizes,setSizes]=useState([]);
     const [discounts,setDiscounts]=useState([]);
     const [inStock,setInStock]=useState(false);
+    const [search,setSearch] = useState("");
 
     useEffect(()=>{
-        filterProducts(sortBy,brands,idealFor,sizes,discounts,inStock);
-    },[sortBy,brands,idealFor,sizes,discounts,inStock])
+        filterProducts(sortBy,brands,idealFor,sizes,discounts,inStock,search);
+    },[sortBy,brands,idealFor,sizes,discounts,inStock,search])
     
 
     const resetFilters=()=>{
@@ -32,6 +33,7 @@ export default function Filters() {
                 <small className="cursor-pointer" onClick={resetFilters}>Clear All</small>
             </span>
             <Divider className="m-0 mb-1"/>
+            <Input.Search placeholder="Search Product" onChange={({target}) => setSearch(target.value)} />
             <div className="py-2 pb-4">
                 <span className="font-medium">Sort By:</span>
                 <Radio.Group className="flex flex-col" options={filters.sortByOption} onChange={(e)=>setSortBy(e.target.value)} value={sortBy} />

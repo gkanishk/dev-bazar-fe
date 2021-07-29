@@ -66,9 +66,9 @@ export default function Navbar() {
                 </span>
                 </Link>
             </div>
-            <div className="w-5/12">
-                {/* <Search placeholder="Search Product" onSearch={() => console.log("searched")} /> */}
-            </div>
+            {/* <div className="w-5/12">
+                <Search placeholder="Search Product" onSearch={() => console.log("searched")} />
+            </div> */}
             <div className="flex justify-end space-x-4 w-36">
                 {
                     router.pathname!=="/login"
