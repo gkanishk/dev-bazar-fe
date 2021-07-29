@@ -1,14 +1,13 @@
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Button, Card, Spin, Tooltip } from "antd";
 import React from "react";
-import Link from "next/link";
 import { useProducts } from "../../context/productContext";
 import { useProductItems } from "../../hooks/useProductItems";
 import Filters from "./Filters";
 
 export default function ProductPage() {
     const { filteredProducts, productLoading } = useProducts();
-    const { isItemInCart, isItemInWishList, getDiscounterPrice, addToCartWishList } = useProductItems();
+    const { isItemInWishList, getDiscounterPrice, addToCartWishList } = useProductItems();
 
     
     return <>
