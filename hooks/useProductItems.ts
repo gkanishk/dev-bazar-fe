@@ -150,6 +150,15 @@ export const useProductItems=()=>{
         return amount;
     }
 
+    const placeOrder = async() =>{
+        notification.success({
+            message: "Order placed",
+            description: "Details will be mailed shortly."
+        });
+        setCart([]);
+        await getAxiosClient(accessToken).post("/user/updateCart",[]);
+    }
+
     return {
         isItemInCart,
         isItemInWishList,
@@ -161,6 +170,7 @@ export const useProductItems=()=>{
         getPriceDetails,
         removeFromCart,
         moveToWishList,
-        updateItemCount
+        updateItemCount,
+        placeOrder
     }
 }

@@ -6,7 +6,7 @@ import { useProductItems } from "../../hooks/useProductItems";
 
 export default function UserCart() {
     const {cart} = useUser();
-    const {getDiscounterPrice, getDeliveryDate, getPriceDetails, removeFromCart, moveToWishList, updateItemCount} = useProductItems();
+    const {getDiscounterPrice, getDeliveryDate, getPriceDetails, removeFromCart, moveToWishList, updateItemCount, placeOrder} = useProductItems();
     return (<div className="h-full pt-12 p-14">
         {cart.length>0&&<strong className="block pb-4 text-base text-center">My Shopping Cart({getPriceDetails().itemCount} Item)</strong>}
         {
@@ -97,7 +97,7 @@ export default function UserCart() {
                                   Rs. {getPriceDetails().finalAmount}
                                 </b>
                             </span>
-                            <Button className="w-full my-4" type="primary" danger>Place Order</Button>
+                            <Button className="w-full my-4" type="primary" danger onClick={placeOrder}>Place Order</Button>
                         </Card>
                 </div>
             </div>
