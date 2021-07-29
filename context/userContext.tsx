@@ -11,7 +11,8 @@ type UserContextType = {
     cart: {item: any,count: number}[]
     setCart: Function,
     setAccessToken: Function,
-    logoutUser:Function
+    logoutUser:Function,
+    isUserDataLoading: boolean
 };
 
 const UserContextDefaultValues: UserContextType = {
@@ -23,7 +24,8 @@ const UserContextDefaultValues: UserContextType = {
     cart: [],
     setCart:()=>{},
     setAccessToken:()=>{},
-    logoutUser:()=>{}
+    logoutUser:()=>{},
+    isUserDataLoading: false
 };
 
 const UserContext = createContext<UserContextType>(UserContextDefaultValues);
@@ -41,6 +43,7 @@ export function UserProvider({ children }: Props) {
     const [wishList,setWishList] = useState([]);
     const [cart,setCart] = useState([]);
     const [accessToken,setAccessToken] = useState("");
+    const [isUserDataLoading, setUserDataLoading] = useState(false);
 
     const logoutUser=()=>{
         setAccessToken("");
@@ -62,11 +65,12 @@ export function UserProvider({ children }: Props) {
     useEffect(()=>{
             (async()=>{
                 if(accessToken.length>0){
+                setUserDataLoading(true);
                 const cartResponse = await getAxiosClient(accessToken).get("/user/cart");
                 const wishListResponse = await getAxiosClient(accessToken).get("/user/wishList");
-                console.log(cartResponse,wishListResponse)
-                setCart(cartResponse.data?.response?.cart?.cartItems??[])
-                setWishList(wishListResponse.data?.response?.wishList?.wishListems??[])
+                setCart(cartResponse.data?.response?.cart?.cartItems??[]);
+                setWishList(wishListResponse.data?.response?.wishList?.wishListems??[]);
+                setUserDataLoading(false);
             }
             })()
     },[accessToken])
@@ -80,7 +84,8 @@ export function UserProvider({ children }: Props) {
         setAccessToken,
         cart,
         setCart,
-        logoutUser
+        logoutUser,
+        isUserDataLoading
     };
 
     return (
