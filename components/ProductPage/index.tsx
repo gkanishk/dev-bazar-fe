@@ -42,14 +42,7 @@ export default function ProductPage() {
                                     <span className="text-xs font-light text-yellow-500">{`(${discount}% OFF)`}</span>
                                 </p>
 
-                                {!isItemInCart(id)
-                                    ?
                                     <Button disabled={quantity === 0} onClick={() => addToCartWishList(id, "addToCart")}>Add to Cart</Button>
-                                    :
-                                    <Link href="/cart">
-                                        <Button>Go to Cart</Button>
-                                    </Link>
-                                }
 
                                 <div className="grid grid-cols-2 py-2 place-content-between">
                                     <span className="text-xs font-normal text-red-500">{(quantity < 3 && quantity > 0) && "Only Few left!"}</span>

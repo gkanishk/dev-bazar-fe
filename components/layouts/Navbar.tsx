@@ -1,13 +1,15 @@
-import { Input, Button, Menu, Dropdown, Tooltip, notification } from 'antd';
+import { Input, Button, Menu, Dropdown, Tooltip, notification, Badge } from 'antd';
 import { UserOutlined, ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import React from 'react';
 import { useUser } from '../../context/userContext';
+import { useProductItems } from '../../hooks/useProductItems';
 const { Search } = Input;
 
 export default function Navbar() {
-    const {isLoginned,logoutUser}=useUser();
+    const {isLoginned,logoutUser, cart}=useUser();
+    const {getPriceDetails} = useProductItems();
     const router=useRouter();
     const logout=()=>{
         router.push("/");
@@ -82,7 +84,9 @@ export default function Navbar() {
                 </Link>
                 <Link href="/cart">
                 <Tooltip placement="bottom" title={"Cart"}>
+                    <Badge count={cart.length?getPriceDetails().itemCount:0} dot={false}>
                     <Button shape="circle" icon={<ShoppingCartOutlined />} />
+                    </Badge>             
                 </Tooltip>
                 </Link>
             </div>

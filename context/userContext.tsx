@@ -6,9 +6,9 @@ type UserContextType = {
     isLoginned: boolean,
     setLoginned: Function,
     accessToken: string,
-    wishList: Array<any>,
+    wishList: {item: any}[],
     setWishList:Function,
-    cart: Array<any>
+    cart: {item: any,count: number}[]
     setCart: Function,
     setAccessToken: Function,
     logoutUser:Function
