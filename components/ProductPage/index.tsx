@@ -13,6 +13,7 @@ export default function ProductPage() {
     return <>
         {productLoading ? <div className="grid w-full h-screen place-content-center">
             <Spin className="self-center" size="large" />
+            <span className="mt-2">Hold on tight, we are getting reading.</span>
         </div> :
             <div className="grid w-full h-full grid-cols-4 pt-8">
                 <div className="col-span-1 p-2">

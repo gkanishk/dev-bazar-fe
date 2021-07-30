@@ -66,10 +66,14 @@ export function UserProvider({ children }: Props) {
             (async()=>{
                 if(accessToken.length>0){
                 setUserDataLoading(true);
-                const cartResponse = await getAxiosClient(accessToken).get("/user/cart");
-                const wishListResponse = await getAxiosClient(accessToken).get("/user/wishList");
-                setCart(cartResponse.data?.response?.cart?.cartItems??[]);
-                setWishList(wishListResponse.data?.response?.wishList?.wishListems??[]);
+                try {
+                    const cartResponse = await getAxiosClient(accessToken).get("/user/cart");
+                    const wishListResponse = await getAxiosClient(accessToken).get("/user/wishList");
+                    setCart(cartResponse.data?.response?.cart?.cartItems??[]);
+                    setWishList(wishListResponse.data?.response?.wishList?.wishListems??[]);
+                } catch(error) {
+                    logoutUser();
+                }
                 setUserDataLoading(false);
             }
             })()
