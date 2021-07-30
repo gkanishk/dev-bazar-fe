@@ -1,29 +1,34 @@
-# Next.js + Tailwind CSS Example
+<p align="center">
+    <br>
+    <h1 align="center" >Dev Bazar</h1>
+</p>
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) (v2.1) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+**Dev Bazar is an ecommerce web app with cart, wishlist and facet filter features build on top of Typescript, Next.js, tailwind CSS and Ant-design.**
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+### Live:
+   - ![demo](/public/preview.gif)
 
-## Preview
+## Stacks used:
+- Next.js
+- TypeScript
+- Context API
+- Tailwind CSS
+- Ant-Design
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+![react](https://img.shields.io/badge/frontend-Next-blue) ![hooks](https://img.shields.io/badge/state-contextAPI-yellow) ![chart](https://img.shields.io/badge/style-tailwindcss-lightblue) ![style](https://img.shields.io/badge/style-AntDesign-orange)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## Installation:
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
 ```
+git clone https://github.com/gkanishk/dev-bazar-fe
+cd dev-bazar-fe
+yarn
+yarn dev
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+```
+Will load at:
+
+`localhost:3000`
+
+### Licensing:
+![license](https://shields.io/badge/LICENCE-MIT-green?style=for-the-badgen)
