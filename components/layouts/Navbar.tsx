@@ -73,12 +73,14 @@ export default function Navbar() {
                 {
                     router.pathname!=="/login"
                     &&
-                    <Dropdown overlay={menu} placement="bottomCenter">
                     <>
+                    <Dropdown overlay={menu} placement="bottomCenter" trigger={["hover","click"]}>
                     <Button shape="circle" className="sm:hidden" icon={<UserOutlined />} />
-                    <Button shape="circle" className="sl:hidden" size="small" icon={<UserOutlined />} />
-                    </>
                     </Dropdown>
+                    <Dropdown overlay={menu} placement="bottomCenter" trigger={["hover","click"]}>
+                    <Button shape="circle" className="sl:hidden" size="small" icon={<UserOutlined />} />
+                    </Dropdown>
+                    </>
                 }
                 <Link href="/wishlist">
                 <Tooltip placement="bottom" title={"WishList"}>               
