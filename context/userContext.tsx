@@ -61,7 +61,7 @@ export function UserProvider({ children }: Props) {
 
     useEffect(()=>{
         const token = getCookie("accessToken");
-        const userData= localStorage.getItem("username");
+        const userData= localStorage.getItem("userName");
         setUserName(userData)
         if(token){
             setAccessToken(token);
