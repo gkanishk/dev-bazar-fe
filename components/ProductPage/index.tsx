@@ -15,11 +15,11 @@ export default function ProductPage() {
             <Spin className="self-center" size="large" />
             <span className="mt-2">Hold on tight, we are getting reading.</span>
         </div> :
-            <div className="grid w-full h-full grid-cols-4 pt-8">
-                <div className="col-span-1 p-2">
+            <div className="grid w-full h-full grid-cols-4 pt-8 sm:grid-cols-2">
+                <div className="col-span-1 p-2 sm:hidden">
                     <Filters />
                 </div>
-                <div className="flex flex-wrap items-start justify-start w-full h-full col-span-3">
+                <div className="flex flex-wrap items-start justify-start w-full h-full col-span-3 sm:items-center sm:justify-evenly lg:items-center lg:justify-evenly">
                     {!productLoading && filteredProducts.length > 0 ? filteredProducts.map(({ id, name, price, discount, quantity, attributes: { img, brand } }) => {
                         return <Card
                             hoverable

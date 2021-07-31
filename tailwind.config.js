@@ -14,6 +14,13 @@ module.exports = {
       "screen":'100vh',
       '100': '26rem'
      },
+     screens: {
+      'sm': {'max':'640px'},
+      'md': '768px',
+      'lg': {'max':'1024px'},
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       height: {
         '100':'26rem',

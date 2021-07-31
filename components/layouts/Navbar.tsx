@@ -52,40 +52,40 @@ export default function Navbar() {
     )
 
     return (
-        <nav className="fixed top-0 z-50 flex items-center justify-between w-full px-16 py-4 mb-1 font-medium bg-white nav-bar">
-            <h1 className="text-2xl">Dev Bazar</h1>
-            <div className="flex items-center justify-between font-medium w-28">
+        <nav className="fixed top-0 z-50 flex items-center justify-between w-full px-16 py-4 mb-1 font-medium bg-white nav-bar sm:px-2">
+            <h1 className="my-auto text-2xl sm:text-base">Dev Bazar</h1>
+            <div className="flex items-center justify-between font-medium w-28 sm:ml-1">
                 <Link href="/">
-                    <span className="mx-2 text-base text-gray-800 cursor-pointer hover:underline">
+                    <span className="mx-2 text-base text-gray-800 cursor-pointer hover:underline sm:text-xs">
                         HOME
-                </span>
+                    </span>
                 </Link>
                 <Link href="/products">
-                    <span className="mx-2 text-base cursor-pointer hover:underline">
+                    <span className="mx-2 text-base cursor-pointer hover:underline sm:text-xs">
                         PRODUCTS
-                </span>
+                    </span>
                 </Link>
             </div>
             {/* <div className="w-5/12">
                 <Search placeholder="Search Product" onSearch={() => console.log("searched")} />
             </div> */}
-            <div className="flex justify-end space-x-4 w-36">
+            <div className="flex justify-end space-x-4 w-36 sm:space-x-2">
                 {
                     router.pathname!=="/login"
                     &&
                     <Dropdown overlay={menu} placement="bottomCenter">
-                    <Button shape="circle" icon={<UserOutlined />} />
+                    <Button shape="circle" size="small" icon={<UserOutlined />} />
                     </Dropdown>
                 }
                 <Link href="/wishlist">
                 <Tooltip placement="bottom" title={"WishList"}>               
-                    <Button shape="circle" icon={<HeartOutlined />} />
+                    <Button shape="circle" size="small" icon={<HeartOutlined />} />
                 </Tooltip>
                 </Link>
                 <Link href="/cart">
                 <Tooltip placement="bottom" title={"Cart"}>
                     <Badge count={cart.length?getPriceDetails().itemCount:0} dot={false}>
-                    <Button shape="circle" icon={<ShoppingCartOutlined />} />
+                    <Button shape="circle" size="small" icon={<ShoppingCartOutlined />} />
                     </Badge>             
                 </Tooltip>
                 </Link>
