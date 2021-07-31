@@ -6,7 +6,7 @@ import { set_cookie } from "../../hooks/useCookie";
 
 function LoginForm({redirectPage,changePage}) {
     const [form] = Form.useForm();
-    const {setLoginned,setAccessToken}=useUser();
+    const {setLoginned,setAccessToken,setUserName}=useUser();
     const [isLoginLoading,setIsLoginLoading]=useState<boolean>(false);
     const [isGuestLoginLoading,setIsGuestLoginLoading]=useState<boolean>(false);
 
@@ -16,6 +16,8 @@ function LoginForm({redirectPage,changePage}) {
             if(response.data?.statusCode===200){
             setLoginned(true);
             localStorage.setItem("accessToken",response.data.response.accessToken)
+            localStorage.setItem("userName",response.data?.response?.user?.name || "User");
+            setUserName(response.data?.response?.user?.name||"User")
             set_cookie("accessToken",response.data.response.accessToken)
             setAccessToken(response.data.response.accessToken);
             notification.success({

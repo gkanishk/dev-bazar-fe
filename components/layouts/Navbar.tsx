@@ -8,7 +8,7 @@ import { useProductItems } from '../../hooks/useProductItems';
 const { Search } = Input;
 
 export default function Navbar() {
-    const {isLoginned,logoutUser, cart}=useUser();
+    const {isLoginned,logoutUser, cart, username}=useUser();
     const {getPriceDetails} = useProductItems();
     const router=useRouter();
     const logout=()=>{
@@ -21,7 +21,7 @@ export default function Navbar() {
     const menu = (
         <Menu>
             <div className="flex flex-col items-start p-3 justify-items-start">
-                <strong>Welcome {isLoginned&&"User"}!</strong>
+                <strong>Welcome {isLoginned&&(username||"User")}!</strong>
                 {
                     !isLoginned&&
                     <>

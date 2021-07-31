@@ -1,5 +1,4 @@
 import { Button, Form, Input, notification } from "antd";
-import axios from "axios";
 import React, { useState } from "react";
 import { useUser } from "../../context/userContext";
 import { getAxiosClient } from "../../hooks/useAxios";
@@ -7,7 +6,7 @@ import { set_cookie } from "../../hooks/useCookie";
 
 export default function SignUpForm({redirectPage,changePage}) {
     const [form] = Form.useForm();
-    const {setLoginned,setAccessToken}=useUser();
+    const {setLoginned,setAccessToken,setUserName}=useUser();
     const [isSignUpLoading,setIsSignUpLoading]=useState<boolean>(false);
     const signUpUser=async (value)=>{
         try {
@@ -15,6 +14,8 @@ export default function SignUpForm({redirectPage,changePage}) {
             if(response.data?.statusCode===200){
             setLoginned(true);
             localStorage.setItem("accessToken",response.data.response.accessToken);
+            localStorage.setItem("userName",response.data?.response?.user?.name || "User");
+            setUserName(response.data?.response?.user?.name||"User")
             set_cookie("accessToken",response.data.response.accessToken);
             setAccessToken(response.data.response.accessToken);
             notification.success({

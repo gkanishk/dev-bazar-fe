@@ -12,7 +12,9 @@ type UserContextType = {
     setCart: Function,
     setAccessToken: Function,
     logoutUser:Function,
-    isUserDataLoading: boolean
+    isUserDataLoading: boolean,
+    username: string,
+    setUserName: Function
 };
 
 const UserContextDefaultValues: UserContextType = {
@@ -25,7 +27,9 @@ const UserContextDefaultValues: UserContextType = {
     setCart:()=>{},
     setAccessToken:()=>{},
     logoutUser:()=>{},
-    isUserDataLoading: false
+    isUserDataLoading: false,
+    username: "User",
+    setUserName:()=>{}
 };
 
 const UserContext = createContext<UserContextType>(UserContextDefaultValues);
@@ -44,6 +48,7 @@ export function UserProvider({ children }: Props) {
     const [cart,setCart] = useState([]);
     const [accessToken,setAccessToken] = useState("");
     const [isUserDataLoading, setUserDataLoading] = useState(false);
+    const [username,setUserName] = useState<string>();
 
     const logoutUser=()=>{
         setAccessToken("");
@@ -56,6 +61,8 @@ export function UserProvider({ children }: Props) {
 
     useEffect(()=>{
         const token = getCookie("accessToken");
+        const userData= localStorage.getItem("username");
+        setUserName(userData)
         if(token){
             setAccessToken(token);
             setLoginned(true);
@@ -89,7 +96,9 @@ export function UserProvider({ children }: Props) {
         cart,
         setCart,
         logoutUser,
-        isUserDataLoading
+        isUserDataLoading,
+        username,
+        setUserName
     };
 
     return (
