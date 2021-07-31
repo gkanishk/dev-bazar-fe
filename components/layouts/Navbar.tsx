@@ -74,18 +74,23 @@ export default function Navbar() {
                     router.pathname!=="/login"
                     &&
                     <Dropdown overlay={menu} placement="bottomCenter">
-                    <Button shape="circle" size="small" icon={<UserOutlined />} />
+                    <>
+                    <Button shape="circle" className="sm:hidden" icon={<UserOutlined />} />
+                    <Button shape="circle" className="sl:hidden" size="small" icon={<UserOutlined />} />
+                    </>
                     </Dropdown>
                 }
                 <Link href="/wishlist">
                 <Tooltip placement="bottom" title={"WishList"}>               
-                    <Button shape="circle" size="small" icon={<HeartOutlined />} />
+                    <Button shape="circle" className="sl:hidden" size="small" icon={<HeartOutlined />} />
+                    <Button shape="circle" className="sm:hidden" icon={<HeartOutlined />} />
                 </Tooltip>
                 </Link>
                 <Link href="/cart">
                 <Tooltip placement="bottom" title={"Cart"}>
                     <Badge count={cart.length?getPriceDetails().itemCount:0} dot={false}>
-                    <Button shape="circle" size="small" icon={<ShoppingCartOutlined />} />
+                    <Button shape="circle" size="small" className="sl:hidden" icon={<ShoppingCartOutlined />} />
+                    <Button shape="circle" className="sm:hidden" icon={<ShoppingCartOutlined />} />
                     </Badge>             
                 </Tooltip>
                 </Link>
