@@ -7,7 +7,7 @@ import UserCart from "./UserCart";
 function CartPage() {
     const { isLoginned, isUserDataLoading } = useUser();
     return (
-        <div className="h-full p-2">{
+        <div className="w-screen h-full p-2">{
             isLoginned && !isUserDataLoading ? <UserCart /> : isUserDataLoading ? 
             <div className="grid w-full h-screen place-content-center">
                 <Spin className="self-center" size="large" />

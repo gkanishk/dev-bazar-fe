@@ -7,21 +7,21 @@ import { useProductItems } from "../../hooks/useProductItems";
 export default function UserCart() {
     const {cart} = useUser();
     const {getDiscounterPrice, getDeliveryDate, getPriceDetails, removeFromCart, moveToWishList, updateItemCount, placeOrder} = useProductItems();
-    return (<div className="h-full pt-12 p-14">
+    return (<div className="w-screen h-full pt-12 p-14 sm:p-0">
         {cart.length>0&&<strong className="block pb-4 text-base text-center">My Shopping Cart({getPriceDetails().itemCount} Item)</strong>}
         {
             cart.length>0?
-            <div className="grid grid-cols-5">
+            <div className="grid grid-cols-5 sm:grid-cols-1 sm:px-2">
                 <div className="col-span-3">
                 {cart.map(({item:{id,quantity,discount,name,price,attributes:{img, brand, sizes}},count},index, arr)=>{
                 return <Card
                             hoverable
-                            className="p-4 m-2 mt-0 ml-auto cursor-default"
+                            className="p-4 m-2 mt-0 ml-auto cursor-default sm:mx-auto sm:w-full"
                             style={{ width: 560 }}
                             key={id}
                         >
                             <div className="grid grid-cols-8">
-                            <img className="col-span-2 w-28" src={img} alt="product image" />
+                            <img className="col-span-2 w-28 sm:w-20" src={img} alt="product image" />
                             <div className="col-span-6">
                             <strong className="flex justify-between text-justify">
                                 <span>{name}</span>
@@ -47,7 +47,7 @@ export default function UserCart() {
                                     [1,2,3,4].map((value)=> value<=quantity&&<Select.Option value={value}>{value}</Select.Option>)
                                 }
                             </Select>
-                            <div className="mt-4">
+                            <div className="mt-4 sm:mt-2">
                                 <Button type="link" onClick={()=>removeFromCart(index,true)}>Remove</Button>
                                 <Button type="link" onClick={()=>moveToWishList(id,index)}>Move to WishList</Button>
                             </div>
@@ -56,7 +56,7 @@ export default function UserCart() {
                         </Card>
                 })}
                 </div>
-                <div className="col-span-2">
+                <div className="col-span-2 sm:mx-auto">
                     <Card
                         className="p-4 ml-2"
                         style={{width: 300 }}
