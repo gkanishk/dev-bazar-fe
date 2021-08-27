@@ -5,15 +5,21 @@
 
 **Dev Bazar is an ecommerce web app with cart, wishlist and facet filter features build on top of Typescript, Next.js, tailwind CSS and Ant-design.**
 
+
 ### Live:
    - ![demo](/public/preview.gif)
 
 ## Stacks used:
+### Frontend:
 - Next.js
 - TypeScript
 - Context API
 - Tailwind CSS
 - Ant-Design
+### [Backend](https://github.com/gkanishk/dev-bazar-be):
+- Nest.js 
+- PostgreSQL 
+- TypeORM
 
 ![react](https://img.shields.io/badge/frontend-Next-blue) ![hooks](https://img.shields.io/badge/state-contextAPI-yellow) ![chart](https://img.shields.io/badge/style-tailwindcss-lightblue) ![style](https://img.shields.io/badge/style-AntDesign-orange)
 
