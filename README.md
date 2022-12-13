@@ -8,6 +8,10 @@
 
 ### Live:
    - ![demo](/public/preview.gif)
+   
+### Lighthouse 🤯
+<img width="700" alt="Screenshot 2022-12-13 at 9 01 05 AM" src="https://user-images.githubusercontent.com/33570551/207221480-b00863c7-d04d-4371-af05-b1513f8dbddc.png">
+
 
 ## Stacks used:
 ### Frontend:
