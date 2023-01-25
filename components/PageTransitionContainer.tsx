@@ -7,13 +7,13 @@ export default function PageTransitionContainer(props) {
     console.log("page props", props, router.route);
 
     return (
-        <TransitionGroup>
+        <TransitionGroup className="h-full pt-16">
             <CSSTransition
                 key={router.route}
                 timeout={500}
                 classNames="animation-page-container"
             >
-                <div>{props.children}</div>
+                {props.children}
             </CSSTransition>
         </TransitionGroup>
     )
