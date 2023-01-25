@@ -16,11 +16,9 @@ function MyApp({ Component, pageProps }) {
       <UserProvider>
         <ProductsProvider>
           <Navbar />
-          <div className="h-full pt-16">
-            <PageTransitionContainer {...pageProps}>
-              <Component {...pageProps} />
-            </PageTransitionContainer>
-          </div>
+          <PageTransitionContainer>
+            <Component {...pageProps} />
+          </PageTransitionContainer>
         </ProductsProvider>
       </UserProvider>
     </>
