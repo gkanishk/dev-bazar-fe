@@ -4,6 +4,7 @@ import { ProductsProvider } from "../context/productContext";
 import { UserProvider } from "../context/userContext";
 import React from "react";
 import Head from "next/head";
+import PageTransitionContainer from "../components/PageTransitionContainer";
 
 function MyApp({ Component, pageProps }) {
 
@@ -16,7 +17,9 @@ function MyApp({ Component, pageProps }) {
         <ProductsProvider>
           <Navbar />
           <div className="h-full pt-16">
-            <Component {...pageProps} />
+            <PageTransitionContainer {...pageProps}>
+              <Component {...pageProps} />
+            </PageTransitionContainer>
           </div>
         </ProductsProvider>
       </UserProvider>

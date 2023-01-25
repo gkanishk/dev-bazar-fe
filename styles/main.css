@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
-@import 'tailwindcss/tailwind.css';
-@import 'antd/dist/antd.css';
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap");
+@import "tailwindcss/tailwind.css";
+@import "antd/dist/antd.css";
 
-body, html {
-    font-family: 'Montserrat', sans-serif;
+body,
+html {
+    font-family: "Montserrat", sans-serif;
     height: 100%;
 }
 
@@ -21,6 +22,29 @@ body, html {
     padding: 0;
 }
 
-#__next{
+#__next {
     height: 100%;
+}
+
+.animation-page-container-enter {
+    opacity: 0;
+    /* right: 0; */
+}
+.animation-page-container-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+
+    /* transition: transform 0.8s ease; */
+    /* transform: translateX(-100%);
+    -webkit-transform: translateX(-100%); */
+}
+.animation-page-container-exit {
+    opacity: 1;
+    /* transform: translateX(-200%); */
+}
+.animation-page-container-exit-active {
+    opacity: 0;
+    /* transform: translateX(-200%); */
+    transition: opacity 500ms ease-in;
+    /* transition: transform 0.5s ease; */
 }
