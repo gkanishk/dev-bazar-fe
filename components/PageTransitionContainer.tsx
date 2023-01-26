@@ -7,7 +7,7 @@ export default function PageTransitionContainer(props) {
     console.log("page props", props, router.route);
 
     return (
-        <TransitionGroup className="h-full pt-16">
+        <TransitionGroup className="wrapper h-full pt-16">
             <CSSTransition
                 key={router.route}
                 timeout={500}
