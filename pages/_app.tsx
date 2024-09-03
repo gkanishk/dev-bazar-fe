@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Dev Bazar</title>
+        <title>Dev Bazar test</title>
       </Head>
       <UserProvider>
         <ProductsProvider>
