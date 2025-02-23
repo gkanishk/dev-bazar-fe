@@ -4,30 +4,30 @@
 
 body,
 html {
-    font-family: "Montserrat", sans-serif;
-    height: 100%;
+  font-family: "Montserrat", sans-serif;
+  height: 100%;
 }
 
 .nav-bar {
-    -webkit-box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
-    box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+  -webkit-box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
 }
 
 .ant-card-body {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #__next {
-    height: 100%;
+  height: 100%;
 }
 
 .wrapper {
-    /* position: relative;
+  /* position: relative;
     overflow: hidden;
     width: 100%;
     height: 100%; */
@@ -48,34 +48,34 @@ html {
 } */
 
 .animation-page-container-enter {
-    /* position: absolute;
+  /* position: absolute;
     left: -100vw;
     width: 100%;
     height: 100%;
     transition: 1s; */
-    right: -100vw;
-    opacity: 0;
+  right: -100vw;
+  opacity: 0;
 }
 
 .animation-page-container-enter-active {
-    /* opacity: 1;
+  /* opacity: 1;
     transition: opacity 500ms ease-in; */
-    /* transition: 1s;
+  /* transition: 1s;
     left: 0; */
-    right: 0;
-    opacity: 1;
-    position: relative;
-    transition: 0.5s;
+  right: 0;
+  opacity: 1;
+  position: relative;
+  transition: 0.5s;
 
-    /* transition: transform 0.8s ease; */
-    /* transform: translateX(-100%); */
-    /* -webkit-transform: translateX(-100%); */
+  /* transition: transform 0.8s ease; */
+  /* transform: translateX(-100%); */
+  /* -webkit-transform: translateX(-100%); */
 }
 
 .animation-page-container-exit {
-    /* opacity: 1;
+  /* opacity: 1;
     transform: translateX(-200%); */
-    /* position: absolute;
+  /* position: absolute;
     left: -100vw;
     width: 100%;
     height: 100%;
@@ -83,15 +83,15 @@ html {
 }
 
 .animation-page-container-exit-active {
-    /* opacity: 0;
+  /* opacity: 0;
     transform: translateX(-200%);
     transition: opacity 500ms ease-in;
     transition: transform 0.5s ease; */
-    /* transition: 1s;
+  /* transition: 1s;
     left: 0; */
 }
 
 .max-width-container {
-    max-width: 24rem;
-    min-width: 22rem;
+  max-width: 24rem;
+  min-width: 22rem;
 }
